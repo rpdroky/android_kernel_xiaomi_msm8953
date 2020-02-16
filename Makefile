@@ -829,10 +829,13 @@ include $(srctree)/scripts/Makefile.kasan
 include $(srctree)/scripts/Makefile.extrawarn
 include $(srctree)/scripts/Makefile.ubsan
 
+# Custom gcc optimization flags #
+mycustomflags := -pipe -w -O3 -g0 -fgcse-sm -fgcse-las -fgcse-after-reload -funsafe-loop-optimizations -funsafe-math-optimizations
+
 # Add user supplied CPPFLAGS, AFLAGS and CFLAGS as the last assignments
-KBUILD_CPPFLAGS += $(KCPPFLAGS)
-KBUILD_AFLAGS += $(KAFLAGS)
-KBUILD_CFLAGS += $(KCFLAGS)
+KBUILD_CPPFLAGS += $(KCPPFLAGS) $(mycustomflags)
+KBUILD_AFLAGS += $(KAFLAGS) $(mycustomflags)
+KBUILD_CFLAGS += $(KCFLAGS) $(mycustomflags)
 
 # Use --build-id when available.
 LDFLAGS_BUILD_ID := $(patsubst -Wl$(comma)%,%,\
