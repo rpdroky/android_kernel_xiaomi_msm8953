@@ -55,7 +55,7 @@ module_param_named(compressor, zcache_compressor, charp, 0);
 /*
  * The maximum percentage of memory that the compressed pool can occupy.
  */
-static unsigned int zcache_max_pool_percent = 30;
+static unsigned int zcache_max_pool_percent = 10;
 module_param_named(max_pool_percent, zcache_max_pool_percent, uint, 0644);
 
 static unsigned int zcache_clear_percent = 4;
